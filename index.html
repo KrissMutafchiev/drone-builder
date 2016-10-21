@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Drone Builder</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="lib/jquery-UI/jquery-ui.css">
+    <link  rel="stylesheet" type="text/css" href="css/animation.css">
+    <link  rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.6.1/dat.gui.js"></script>
+    <script src="lib/threeJS/three.min.js"></script>
+</head>
+<body>
+<!-- HEADER -->
+<div id="header-block" class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+
+        </div>
+    </div>
+</div>
+<!-- HEADER END -->
+<!-- SECTION -->
+<div id="section-content" class="container-fluid">
+    <div id="construct-panel" class="col-lg-8 col-md-8 ">
+        <div id="XXX" class="row ">
+            <!-- BUILD PANEL -->
+            <!-- CRAFT SECTION -->
+            <div class="form-inline row craft ">
+                <div class="well well-sm">
+                    <h3>First Step <i class="fa fa-info-circle" style="font-size:25px"></i></h3>
+                    <p>Select the desired configuration "DRONE and select the desired "NAME".</p>
+                </div>
+                <div class="col-md-6 col-lg-6">
+                    <label for="nameDrone">Set up "Drone Name"</label>
+                    <input type="text" class="form-control" id="nameDrone" placeholder="">
+                </div>
+                <div class="col-md-6 col-lg-6">
+                    <!--<label for="type">Set up "Drone Type"</label>
+                    <input type="text" class="form-control" id="type" placeholder="">-->
+                    <label for="drone-type">Set up "Drone Type"</label><br/>
+                    <select class="form-control" id="drone-type" onChange="addRotors('rotor-grid');">
+                        <option value="select_type">Select Type</option>
+                        <option value="quad_plus">Quad Plus</option>
+                        <option value="quad_x">Quad X</option>
+                        <option value="octo_plus">Octo Plus</option>
+                        <option value="octo_x">Octo X</option>
+                        <option value="octo_square_plus">Octo Square Plus</option>
+                        <option value="octo_square_x">Octo Scuare X</option>
+                        <option value="octo_colinear_plus">Octo Colinear Plus</option>
+                        <option value="octo_colinear_x">Octo Colinear X</option>
+                        <option value="octo_coax_plus">Octo Coax Plus</option>
+                        <option value="octo_coax_x8">Octo Coax X(X8)</option>
+                        <option value="hexa_plus">Hexa Plus</option>
+                        <option value="hexa_x">Hexa X</option>
+                        <option value="hexa_h">Hexa H</option>
+                        <option value="hexa_coax_y6">Hexa Coax(Y6)</option>
+                        <option value="hexa_coax_reversed">Hexa Coax Reversed</option>
+                        <option value="custom_type">Custom Type</option>
+                    </select>
+                </div>
+            </div>
+            <!-- END CRAFT SECTION -->
+            <!-- ROTORS SECTION -->
+            <div class="form-inline row rotors-section">
+                <div id="rotor-grid" class="col-md-12 col-lg-12 form-group "></div>
+            </div>
+            <!-- END ROTORS SECTION -->
+            <!-- DISTANCE SECTION -->
+            <div class="form-inline row distance">
+                <div class="well well-sm">
+                    <h3>Step Two <i class="fa fa-info-circle" style="font-size:25px"></i></h3>
+                    <p>Set the following parameters as part of the configuration of your "DRONE" <br/>NOTE: Distance - Values are in centimeters , Mass-Values are in grams</p>
+                </div>
+                <div id="dynamicInputName" class="col-md-12 col-lg-12 form-group">
+                    <div class="row element-distance-block">
+                    </div>
+                    <div class="col-md-4 distance-field label-div-name">
+                        <label class="" for="name-field-1">Name:</label>
+                        <input id="name-field-1" class="col-md-6 form-control element-name" value="motor" disabled name="element-name-1" type="text">
+                    </div>
+                    <div class="col-md-4 distance-field label-div-distance">
+                        <label class="" for="distance-field-1">Distance:</label>
+                        <input id="distance-field-1" class="col-md-6 form-control element-distance" name="element-distance-1" type="text">
+                    </div>
+                    <div class="col-md-4 distance-field label-div-mass">
+                        <label class="" for="mass-field-1">Mass:</label>
+                        <input id="mass-field-1" class="col-md-6 form-control element-mass" name="element-mass-1" type="text">
+                    </div>
+                    <div class="col-md-4 distance-field label-div-name">
+                        <label class="" for="name-field-2">Name:</label>
+                        <input id="name-field-2" class="col-md-6 form-control element-name" value="esc" disabled name="element-name-1" type="text">
+                    </div>
+                    <div class="col-md-4 distance-field label-div-distance">
+                        <label class="" for="distance-field-2">Distance:</label>
+                        <input id="distance-field-2" class="col-md-6 form-control element-distance" name="element-distance-1" type="text">
+                    </div>
+                    <div class="col-md-4 distance-field label-div-mass">
+                        <label class="" for="mass-field-2">Mass:</label>
+                        <input id="mass-field-2" class="col-md-6 form-control element-mass" name="element-mass-1" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-6 form-group button-distance-add">
+                    <input class="btn btn-md btn-success" type="button" value="Add Element" onClick="addInput('dynamicInputName','dynamicInputDistance');">
+                </div>
+                <div class="col-md-6 col-lg-6 form-group button-distance-remove">
+                    <input class="btn btn-md btn-danger" type="button" value="Remove Element" onClick="removeInput('dynamicInputName','dynamicInputDistance');">
+                </div>
+            </div>
+            <!-- END DISTANCE SECTION -->
+            <!-- SELECT QTY SECTION -->
+            <div class="form-inline row qty-rotors">
+                <div class="col-md-12 col-lg-12 form-group">
+<!--                    <label for="NumRotations">Select Qty rotors:</label>
+                    <select id="NumRotations" class="form-control ">
+                        <option value="0">-/-</option>
+                        <option value="4">4</option>
+                        <option value="6">6</option>
+                        <option value="8">8</option>
+                        <option value="12">12</option>
+                        <option value="16">16</option>
+                    </select>-->
+                </div>
+            </div>
+            <!-- END SELECT QTY SECTION -->
+            <!-- SECTION MASS  -->
+            <div id="mass-section" class="row mass-row">
+                <div class="well well-sm">
+                    <h3>Step Four <i class="fa fa-info-circle" style="font-size:25px"></i></h3>
+                    <p>Add the desired custom components. <br/>NOTE: Distance - Values are in centimeters , Mass-Values are in grams</p>
+                </div>
+                <div class="col-md-3">
+                    <label class="" for="mass-name-1">Name</label>
+                    <input id='mass-name-1' class="col-md-2 form-control mass-cube" type="text" name="mass-name-1">
+                </div>
+                <div class="col-md-1">
+                    <label class="" for="input-dimX-1">dimX</label>
+                    <input id='input-dimX-1' class="col-md-1 form-control" type="text" name="input-dimX-1">
+                    <div id="slider-dimX-1" class="slider-button"></div>
+                </div>
+                <div class="col-md-1">
+                    <label class="" for="input-dimY-1">dimY</label>
+                    <input id="input-dimY-1" class="col-md-1 form-control" type="text" name="input-dimY-1">
+                    <div id="slider-dimY-1"></div>
+                </div>
+                <div class="col-md-1">
+                    <label class="" for="input-dimZ-1">dimZ</label>
+                    <input id="input-dimZ-1" class="col-md-1 form-control" type="text" name="input-dimZ-1">
+                    <div id="slider-dimZ-1"></div>
+                </div>
+                <div class="col-md-1">
+                    <label class="" for="input-offsetX-1">offsetX</label>
+                    <input id="input-offsetX-1" class="col-md-1 form-control" type="text" name="input-offsetX-1">
+                    <div id="slider-offsetX-1"></div>
+                </div>
+                <div class="col-md-1">
+                    <label class="" for="input-offsetY-1">offsetY</label>
+                    <input id="input-offsetY-1" class="col-md-1 form-control" type="text" name="input-offsetY-1">
+                    <div id="slider-offsetY-1"></div>
+                </div>
+                <div class="col-md-1">
+                    <label class="" for="input-offsetZ-1">offsetZ</label>
+                    <input id="input-offsetZ-1" class="col-md-1 form-control" type="text" name="input-offsetZ-1">
+                    <div id="slider-offsetZ-1"></div>
+                </div>
+                <div class="col-md-3">
+                    <label class="" for="mass-value-1">Value</label>
+                    <input id="mass-value-1" class="col-md-1 form-control" type="text" name="mass-value-1">
+                </div>
+            </div>
+            <div class="row footer-button-block ">
+                <div class="col-md-6 button-left-block">
+                    <button id="loadData" type="button" class="btn btn-primary" onclick="generatXML();storeDataDrone('drone-data','text/xml');" >Load Data</button>
+                    <a href="" id="downloadDroneData">click here to download your file</a>
+                </div>
+                <div class="col-md-6 button-right-block">
+                    <button id="addCube" type="button" class="btn btn-success" onclick="addMassRow('mass-section')">Add Cube</button>
+                    <button id="removeCube" type="button" class="btn btn-danger" onclick="removeMassRow();">Remove Cube</button>
+                </div>
+            </div>
+            <!-- END SECTION MASS  -->
+
+        </div>
+    </div>
+    <div id="scene-panel"  class="col-lg-4 col-md-4">
+        <div id="scene-display" class="">
+
+
+            <!-- CANVAS -->
+        </div>
+
+    </div>
+</div>
+<!-- SECTION END -->
+<!-- FOOTER -->
+<div id="footer-content" class="container-fluid">
+    <div class="row">
+        <div class="col-md-7 control-window">
+<!--            <div id="ctrl">
+&lt;!&ndash;                <input type="range" value="0" min="0" max="100" onchange="mesh.morphTargetInfluences[ 0 ] = this.value/100;" />
+                <input type="range" value="0" min="0" max="100" onchange="mesh.morphTargetInfluences[ 1 ] = this.value/100;" />
+                <input type="range" value="0" min="0" max="100" onchange="mesh.morphTargetInfluences[ 2 ] = this.value/100;" />
+                <input type="range" value="0" min="0" max="100" onchange="mesh.morphTargetInfluences[ 3 ] = this.value/100;" />
+                <input type="range" value="0" min="0" max="100" onchange="mesh.morphTargetInfluences[ 4 ] = this.value/100;" />
+                <input type="range" value="0" min="0" max="100" onchange="mesh.morphTargetInfluences[ 5 ] = this.value/100;" />
+                <input type="range" value="0" min="0" max="100" onchange="mesh.morphTargetInfluences[ 6 ] = this.value/100;" />
+                <input type="range" value="0" min="0" max="100" onchange="mesh.morphTargetInfluences[ 7 ] = this.value/100;" />&ndash;&gt;
+            </div>-->
+        </div>
+        <div class="col-md-2 display-window">
+        </div>
+        <div class="col-md-3 button-window">
+
+        </div>
+    </div>
+</div>
+<!-- FOOTER END -->
+
+<!-- JS LIB AND FILE LOADING -->
+<script src="lib/jquery-3.1.0/jquery-3.1.0.js"></script>
+<script src="lib/jquery-UI/jquery-ui.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!--
+<script type="text/javascript" src="./lib/dat/index.js"></script>
+-->
+<script src="lib/threeJS/Detector.js"></script>
+<script src="lib/threeJS/stats.min.js"></script>
+<script src="lib/threeJS/OrbitControls.js"></script>
+<script src="lib/threeJS/trackBallControl.js"></script>
+<script src="lib/XMLWriter-master/XMLWriter.js"></script>
+<script src="js/app.js"></script>
+<script src="js/xml-converter.js"></script>
+<!--<script src="js/three.js"></script>-->
+<script src="js/xxx.js"></script>
+</body>
+</html>
+

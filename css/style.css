@@ -1,0 +1,121 @@
+/* HEADER */
+#header-block{
+    height:80px;
+}
+/* HEADER END*/
+
+/* SECTION */
+#scene-panel{
+    border:solid 1px black;
+}
+#construct-panel{
+    height: auto;
+    border:solid 1px black;
+}
+.form-inline{
+    margin-top:10px;
+}
+.distance input {
+    width: 100% !important;
+}
+.form-inline label {
+    text-align: center;
+}
+.rotors-section input{
+  margin-left:25px;
+  margin-top:5px;
+}
+.rotors-section label{
+  margin-left:5px;
+}
+.form-group button {
+    width:100% !important;
+    margin-bottom: 25px;
+}
+.craft{
+    height: auto;
+    padding: 20px;
+    text-align: center;
+}
+.craft input {
+    width:100% !important;
+}
+.distance{
+    text-align: center;
+    height: auto;
+    padding: 8px;
+}
+.qty-rotors{
+    height: auto;
+    padding: 5px;
+    text-align: center;
+}
+.rotors-section{
+    height: auto;
+    padding: 20px;
+}
+.rotor-field-block-6 ,.rotor-field-block-8 ,.rotor-field-block-12 ,.rotor-field-block-16,.rotor-field-block-4{
+display: none;
+}
+.mass{
+  margin-top: 35px;
+}
+.mass input{
+}
+.mass label{
+  text-align: center;
+}
+.footer-button-block{
+  margin-top:50px;
+}
+.button-left-block ,.button-right-block{
+  text-align: center;
+}
+.button-distance-add ,.button-distance-remove  {
+    text-align: center;
+    margin-top:30px;
+}
+#rotor-grid{
+    text-align: center;
+}
+.mass-row{
+    text-align: center;
+}
+
+
+
+/*.control-window{
+    height:200px;
+    background-repeat: no-repeat;
+    background-image: url('../img/footer-window-control.png');
+    background-size: 100% 100%;
+}
+.display-window{
+    height:200px;
+    background-repeat: no-repeat;
+    background-image: url('../img/footer-window-display.png');
+    background-size: 100% 100%;
+}
+.button-window{
+    height:200px;
+    background-repeat: no-repeat;
+    background-image: url('../img/footer-button-control.png');
+    background-size: 100% 100%;
+}*/
+.display-window ul {
+     margin-top: 45px;
+ }
+.button-window input {
+    margin-top:50px;
+    margin-left:15px;
+}
+
+/* SECTION END */
+
+/* FOOTER*/
+#footer-content{
+    height: 80px;
+
+}
+
+/* FOOTER END */
