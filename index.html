@@ -23,6 +23,11 @@
 <!-- HEADER END -->
 <!-- SECTION -->
 <div id="section-content" class="container-fluid">
+    <div id="scene-display" class="">
+
+
+        <!-- CANVAS -->
+    </div>
     <div id="construct-panel" class="col-lg-8 col-md-8 ">
         <div id="XXX" class="row ">
             <!-- BUILD PANEL -->
@@ -114,15 +119,15 @@
             <!-- SELECT QTY SECTION -->
             <div class="form-inline row qty-rotors">
                 <div class="col-md-12 col-lg-12 form-group">
-<!--                    <label for="NumRotations">Select Qty rotors:</label>
-                    <select id="NumRotations" class="form-control ">
-                        <option value="0">-/-</option>
-                        <option value="4">4</option>
-                        <option value="6">6</option>
-                        <option value="8">8</option>
-                        <option value="12">12</option>
-                        <option value="16">16</option>
-                    </select>-->
+                    <!--                    <label for="NumRotations">Select Qty rotors:</label>
+                                        <select id="NumRotations" class="form-control ">
+                                            <option value="0">-/-</option>
+                                            <option value="4">4</option>
+                                            <option value="6">6</option>
+                                            <option value="8">8</option>
+                                            <option value="12">12</option>
+                                            <option value="16">16</option>
+                                        </select>-->
                 </div>
             </div>
             <!-- END SELECT QTY SECTION -->
@@ -186,11 +191,6 @@
         </div>
     </div>
     <div id="scene-panel"  class="col-lg-4 col-md-4">
-        <div id="scene-display" class="">
-
-
-            <!-- CANVAS -->
-        </div>
 
     </div>
 </div>
@@ -199,22 +199,19 @@
 <div id="footer-content" class="container-fluid">
     <div class="row">
         <div class="col-md-7 control-window">
-<!--            <div id="ctrl">
-&lt;!&ndash;                <input type="range" value="0" min="0" max="100" onchange="mesh.morphTargetInfluences[ 0 ] = this.value/100;" />
-                <input type="range" value="0" min="0" max="100" onchange="mesh.morphTargetInfluences[ 1 ] = this.value/100;" />
-                <input type="range" value="0" min="0" max="100" onchange="mesh.morphTargetInfluences[ 2 ] = this.value/100;" />
-                <input type="range" value="0" min="0" max="100" onchange="mesh.morphTargetInfluences[ 3 ] = this.value/100;" />
-                <input type="range" value="0" min="0" max="100" onchange="mesh.morphTargetInfluences[ 4 ] = this.value/100;" />
-                <input type="range" value="0" min="0" max="100" onchange="mesh.morphTargetInfluences[ 5 ] = this.value/100;" />
-                <input type="range" value="0" min="0" max="100" onchange="mesh.morphTargetInfluences[ 6 ] = this.value/100;" />
-                <input type="range" value="0" min="0" max="100" onchange="mesh.morphTargetInfluences[ 7 ] = this.value/100;" />&ndash;&gt;
-            </div>-->
+            <!--            <div id="ctrl">&lt;!&ndash;
+                            <input type="range" value="0" min="0" max="100" onchange="mesh.morphTargetInfluences[ 0 ] = this.value/100;" />
+                            <input type="range" value="0" min="0" max="100" onchange="mesh.morphTargetInfluences[ 1 ] = this.value/100;" />
+                            <input type="range" value="0" min="0" max="100" onchange="mesh.morphTargetInfluences[ 2 ] = this.value/100;" />
+                            <input type="range" value="0" min="0" max="100" onchange="mesh.morphTargetInfluences[ 3 ] = this.value/100;" />
+                            <input type="range" value="0" min="0" max="100" onchange="mesh.morphTargetInfluences[ 4 ] = this.value/100;" />
+                            <input type="range" value="0" min="0" max="100" onchange="mesh.morphTargetInfluences[ 5 ] = this.value/100;" />
+                            <input type="range" value="0" min="0" max="100" onchange="mesh.morphTargetInfluences[ 6 ] = this.value/100;" />
+                            <input type="range" value="0" min="0" max="100" onchange="mesh.morphTargetInfluences[ 7 ] = this.value/100;" />&ndash;&gt;
+                        </div>-->
         </div>
-        <div class="col-md-2 display-window">
-        </div>
-        <div class="col-md-3 button-window">
-
-        </div>
+        <div class="col-md-2 display-window"></div>
+        <div class="col-md-3 button-window"></div>
     </div>
 </div>
 <!-- FOOTER END -->
@@ -230,12 +227,15 @@
 <script src="lib/threeJS/Detector.js"></script>
 <script src="lib/threeJS/stats.min.js"></script>
 <script src="lib/threeJS/OrbitControls.js"></script>
-<script src="lib/threeJS/trackBallControl.js"></script>
+<script src="lib/threeJS/MD2Loader.js"></script>
+<script src="lib/threeJS/MD2CharacterComplex.js"></script>
+<script src="lib/threeJS/Gyroscope.js"></script>
 <script src="lib/XMLWriter-master/XMLWriter.js"></script>
 <script src="js/app.js"></script>
 <script src="js/xml-converter.js"></script>
 <!--<script src="js/three.js"></script>-->
 <script src="js/xxx.js"></script>
+
 </body>
 </html>
 

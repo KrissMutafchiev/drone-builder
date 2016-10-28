@@ -1,4 +1,4 @@
-var camera, controls, scene,light,light1, renderer ,displayBlock;
+var camera, controls, scene,light, renderer ,displayBlock ,container;
 init();
 animate();
 function init(){
@@ -6,65 +6,97 @@ function init(){
     displayBlock = $("#scene-display");
 
     renderer = new THREE.WebGLRenderer();
-    renderer.setClearColor(0x00000f);
-    renderer.setSize(400, 400);
+    renderer.setClearColor(0xffffff);
+    renderer.setSize(1500, 500);
     document.body.appendChild(renderer.domElement);
 
-    camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000);
-    camera.position.z = 500;
+    camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 2000);
+    camera.position.z = 1000;
+    camera.position.y = 400;
 
-    controls = new THREE.OrbitControls( camera, document, renderer.domElement );
+    var loader = new THREE.JSONLoader();
+
+    controls = new THREE.OrbitControls( camera );
     controls.addEventListener('change', render);
+    //controls.enabled = false;
 
     scene = new THREE.Scene();
 
-    light = new THREE.AmbientLight(0xffffff , 0.10);
-    scene.add(light);
+    scene.fog = new THREE.Fog( 0xffffff, 1000, 2000 );
+    scene.add( camera );
 
-    light1 = new THREE.PointLight(0xffffff , 0.5);
-    scene.add(light1);
+    var axisHelper = new THREE.AxisHelper(100);
+    scene.add( axisHelper );
 
-    var armMaterial = new THREE.MeshNormalMaterial({color: 0x0000ff});
 
-    /* Floor  */
-    var planeGeometry = new THREE.PlaneGeometry( 1000, 1000, 1, 1 );
-    var planeMaterial = new THREE.MeshBasicMaterial( { color: 0x0000ff } );
-    var floor = new THREE.Mesh( planeGeometry, planeMaterial );
-    floor.material.side = THREE.DoubleSide;
+    // instantiate a loader
+    var loaderPlane = new THREE.TextureLoader();
+    // load a resource
+    loaderPlane.load(
+        // resource URL
+        './texture/grasslight-big.jpg',
+        // Function when resource is loaded
+        function ( texture ) {
+            // do something with the texture
+            var gg = new THREE.PlaneBufferGeometry( 16000, 16000 );
+            var material = new THREE.MeshBasicMaterial( {map: texture} );
+            var ground = new THREE.Mesh( gg, material );
+            ground.rotation.x = - Math.PI / 2;
+            ground.material.map.repeat.set( 64, 64 );
+            ground.material.map.wrapS = THREE.RepeatWrapping;
+            ground.material.map.wrapT = THREE.RepeatWrapping;
+            ground.receiveShadow = true;
+            scene.add( ground );
+        }
+    );
 
-    scene.add( floor );
+    var textureDrone = new THREE.ImageUtils.loadTexture('./drone-models/test_model/carbon.jpg');
+    var particleMaterial = new THREE.MeshBasicMaterial({map: textureDrone});
 
-    var geometryArm   = new THREE.CylinderGeometry(10,10,200);
-    var geometryBody  = new THREE.CubeGeometry(20,50,50);
-    var geometryRotor = new THREE.SphereBufferGeometry(20,20,20,20);
+    //var nMaterial =  new THREE.MeshBasicMaterial({map:particleMaterial});
+	loader.load('./drone-models/test_model/trycopter.js' , function (geometry ) {
+        var dron = new THREE.Mesh(geometry,particleMaterial);
+        dron.position.x -= 0;
+        dron.position.z += 0;
+        dron.position.y += 100;
+        scene.add(dron);
 
-    var arm       = new THREE.Mesh(geometryArm,armMaterial);
-    var secondArm = new THREE.Mesh(geometryArm,armMaterial);
-    var body      = new THREE.Mesh(geometryBody,armMaterial);
-    var rotor1    = new THREE.Mesh(geometryRotor,armMaterial);
-    var rotor2    = new THREE.Mesh(geometryRotor,armMaterial);
-    var rotor3    = new THREE.Mesh(geometryRotor,armMaterial);
-    var rotor4    = new THREE.Mesh(geometryRotor,armMaterial);
+        document.addEventListener('keydown', function(e) {
 
-    rotor1.position.z += 100;
-    rotor2.position.z -= 100;
-    rotor3.position.y += 100;
-    rotor4.position.y -= 100;
+            var speed = 4.0;
+            if(e.keyCode == 37) {
+                dron.position.z += speed;
+            }else if(e.keyCode == 39){
+                dron.position.z -= speed;
+            }else if(e.keyCode == 40){
+                dron.position.y -= speed;
+            }else if(e.keyCode == 38){
+                dron.position.y += speed;
+            }
+        },false);
 
-    scene.add(arm,secondArm);
-    scene.add(body,rotor1,rotor2,rotor3,rotor4);
-    arm.rotation.x += 7.85;
 
-    render();
-    function render(){
-        renderer.render( scene, camera );
-    }
+    });
+    var cubeGeometry = new THREE.CubeGeometry(20,20,20);
+    var mesh = new THREE.Mesh(cubeGeometry,particleMaterial);
+    mesh.position.x += 200;
+    mesh.position.z += 200;
+    mesh.position.y += 200;
+    scene.add(mesh);
+
+
+
     displayBlock.append(renderer.domElement);
-
 }
+
 function animate(){
+
     requestAnimationFrame( animate );
+    render();
     controls.update();
 }
 
-
+function render(){
+    renderer.clear();
+    renderer.render( scene, camera );
+}
