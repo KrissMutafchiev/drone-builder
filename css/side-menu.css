@@ -1,0 +1,53 @@
+
+.sidenav {
+    height: 100%;
+    width: 0px;
+    position: fixed;
+    z-index: 999999;
+    top: 0;
+    left: 0;
+    /*background-color: #111;*/
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    background-image:url(../img/warning-border.jpg);
+    background-size: auto 100%;
+    background-position: 90%;
+}
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s
+}
+.sidenav button{
+    display:block;
+    margin:5px;
+    width: 185px;
+}
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+.sidenav .closebtn {
+    position: absolute;
+    top: 0px;
+    right: 12px;
+    font-size: 70px;
+    color: #e43a05;
+    margin-left: 50px;
+}
+.close-btn i{
+    font-size: 35px;
+}
+
+#xxxx {
+    transition: margin-left .5s;
+    padding: 0px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
